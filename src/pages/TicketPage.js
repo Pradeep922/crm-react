@@ -13,7 +13,6 @@ const Navigate = useNavigate();
 const dispatch = useDispatch();
 const adminerror = useSelector((state) => state.ticket.error);
 const user = useSelector((state) => state.userLogin.userInfo)
-console.log('adminerror: ', adminerror);
 
 useEffect(() => {
   if (user === null) {
@@ -35,7 +34,6 @@ if (adminerror) {
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  console.log('Submitted')
   const {title, description, category, priority, progress, status} = formData;
   dispatch(createTicket(title, description, category, priority, progress, status, Navigate));
 
@@ -50,8 +48,6 @@ const handleChange = (e) => {
     [name] : value
   }))  
 }
-
-console.log(formData)
 
 const categories = ['test-1', 'test-2']
 

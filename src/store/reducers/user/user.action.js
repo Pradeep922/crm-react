@@ -29,13 +29,12 @@ export const loginasyncstart = (name, password, Navigate) => {
                     'Content-Type': 'application/json'
                 },
             }
-            const { data } = await axios.post('http://localhost:4000/api/users/login', {name, password}, config)
+            const { data } = await axios.post(`${process.env.REACT_APP_URL}/api/users/login`, {name, password}, config)
             dispatch(fetchusersuccess(data));
 
             localStorage.setItem('userInfo', JSON.stringify(data));
             Navigate('/Dashboard')
         }catch(error){
-            console.log(error.message);
             let error_payload = error.response && error.response.data.message ? error.response.data.message : error.message
             dispatch(fetchusererror(error_payload));  
         }

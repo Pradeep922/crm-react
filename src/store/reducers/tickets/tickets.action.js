@@ -21,9 +21,8 @@ export const createTicket = (title, description, category, priority, progress, s
     return async(dispatch,getState) => {
         dispatch(ticketreqstart());
         try{
-            console.log('Hi');
+            
             const { userLogin: { userInfo } } = getState();
-            console.log(userInfo.tokens[0])
 
             const config = {
                 headers: {
@@ -31,14 +30,13 @@ export const createTicket = (title, description, category, priority, progress, s
                 } 
 
                 }
-            await axios.post('http://localhost:4000/api/ticket', {title, description, category, priority, progress, status}, config)
+            await axios.post(`${process.env.REACT_APP_URL}/api/ticket`, {title, description, category, priority, progress, status}, config)
             dispatch(ticketreqsuccess());
 
             Navigate('/Dashboard')
         }catch(error){
             
             let error_payload = error.response && error.response.data.message ? error.response.data.message : error.message
-            console.log(error_payload);
             dispatch(ticketreqerror(error_payload));  
         }
     }

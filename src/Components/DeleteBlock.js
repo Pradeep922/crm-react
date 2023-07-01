@@ -4,7 +4,6 @@ import '../index.css';
 const Deleteblock = () => {
 
   const deleteTicket = () => {
-    console.log('deleted')
   }
   return (
     <div className="delete-block">

@@ -23,20 +23,16 @@ export const showTickets = () => {
         try{
             
             const { userLogin: { userInfo } } = getState();
-            console.log(userInfo.tokens[0])
-
             const config = {
                 headers: {
                     Authorization: `Bearer ${userInfo.tokens[0]}`
                 } 
 
                 }
-                console.log('Hi Test')
-            const {data} = await axios.get('http://localhost:4000/api/ticket', config)
-            console.log('data: ', data);
+            const {data} = await axios.get(`${process.env.REACT_APP_URL}/api/ticket`, config)
+            
             dispatch(ticketlistreqsuccess(data));
         }catch(error){
-            console.log(error.message);
             let error_payload = error.response && error.response.data.message ? error.response.data.message : error.message
             dispatch(ticketlistreqsuccess(error_payload));  
         }

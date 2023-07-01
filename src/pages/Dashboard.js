@@ -15,8 +15,6 @@ const Navigate = useNavigate();
 
 
 const user = useSelector((state) => state.userLogin.userInfo)
-console.log(user);
-
 
 useEffect(() => {
   if (user === null) {
@@ -27,9 +25,6 @@ useEffect(() => {
 
 const list = useSelector((state) => state.ticketlist.allticketlist);
 const error = useSelector((state) => state.ticketlist.error);
-
-console.log('list: ', list);
-console.log('error: ', error);
 
   const tickets = [
     { 
@@ -84,8 +79,6 @@ if (user != null) {
     ...new Set(list?.map(({category}) => category))
   ]
 }
-
-  console.log(uniqueCategories)
 
   return (
     <div className="dashboard">
